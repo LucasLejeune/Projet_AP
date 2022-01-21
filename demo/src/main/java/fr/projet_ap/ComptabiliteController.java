@@ -24,6 +24,21 @@ public class ComptabiliteController {
     private Label pasBon;
 
     @FXML
+    private TextField Matricule;
+
+    @FXML
+    private TextField nom;
+
+    @FXML
+    private Label QuantiteKilometrage;
+
+    @FXML
+    private Label QuantiteNuitee;
+
+    @FXML
+    private Label QuantiteRepas;
+
+    @FXML
     private void switchToClient() throws IOException {
         String dbURL = "jdbc:mysql://localhost:3306/projet_AP";
         String username = "root";
@@ -77,10 +92,26 @@ public class ComptabiliteController {
 
             while (result.next()) {
                 String ident = result.getString(1);
-                String nom = result.getString(2);
+                String Nom = result.getString(2);
                 String prenom = result.getString(3);
 
-                String Nom_prenom = nom + " " + prenom;
+                String Nom_prenom = Nom + " " + prenom;
+
+                if (Matricule.getText().equals(ident) && nom.getText().equals(Nom_prenom)) {
+                    String ficheSql = "SELECT QuantiteNuitee, QuantiteRepas, QuantiteKilometrage FROM fiches JOIN users ON VisiteurMatricule = Matricule WHERE Matricule = "
+                            + ident + ";";
+
+                    statement = conn.createStatement();
+                    result = statement.executeQuery(ficheSql);
+
+                    String QNuitee = result.getString(1);
+                    String QRepas = result.getString(2);
+                    String QKilometrage = result.getString(3);
+
+                    QuantiteNuitee.setText(QNuitee);
+                    QuantiteRepas.setText(QRepas);
+                    QuantiteKilometrage.setText(QKilometrage);
+                }
             }
 
         } catch (SQLException ex) {
