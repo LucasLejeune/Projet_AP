@@ -43,27 +43,20 @@ public class ComptabiliteController {
         String dbURL = "jdbc:mysql://localhost:3306/projet_AP";
         String username = "root";
         String password = "";
-        Boolean bonId = false;
 
         try (Connection conn = DriverManager.getConnection(dbURL, username, password)) {
 
-            String sql = "SELECT Matricule, Mot_de_passe, ta_role FROM users join type_agent ON ta_fk = ta_id; ";
+            String sql = "SELECT Matricule FROM users WHERE Matricule = " + id.getText() + " AND Mot_de_passe = "
+                    + mdp.getText() + "; ";
 
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(sql);
 
-            while (result.next()) {
-                String ident = result.getString(1);
-                String pass = result.getString(2);
-                String role = result.getString(3);
+            String ident = result.getString(1);
 
-                if (id.getText().equals(ident) && mdp.getText().equals(pass) && role.equals("compta")
-                        || id.getText().equals("admin") && mdp.getText().equals("admin")) {
-                    bonId = true;
-                    App.setRoot("ClientC");
-                }
-            }
-            if (bonId == false) {
+            if (id.getText().equals(ident) || id.getText().equals("admin") && mdp.getText().equals("admin")) {
+                App.setRoot("ClientC");
+            } else {
                 pasBon.setText("Identifiant ou mot de passe invalide");
             }
 
