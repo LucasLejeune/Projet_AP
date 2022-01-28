@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.projet_ap.ClientCController">
    <children>
-      <Button fx:id="validation" layoutX="31.0" layoutY="240.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="240.0" text="Portail de validation de fiche de frais" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="validation" layoutX="31.0" layoutY="240.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="240.0" text="Portail de validation de ma dernière fiche de frais" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>

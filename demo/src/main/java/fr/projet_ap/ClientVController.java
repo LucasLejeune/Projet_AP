@@ -14,7 +14,7 @@ public class ClientVController {
     private void switchToRenseignement() throws IOException {
         App.setRoot("Renseignement");
     }
-    
+
     @FXML
     private void switchToAcceuil() throws IOException {
         App.setRoot("Acceuil");
